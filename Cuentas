@@ -1,0 +1,169 @@
+1.0    Activo
+1.1.0   Caja Y Bancos
+1.1.1    Caja
+1.1.2    Valores a depositar
+1.1.3    Caja Moneda Extranjera
+1.1.4.0  Bancos
+1.1.4.1   Banco xx cuenta corriente|2.2.6
+1.1.4.2   Banco xx caja de ahorro
+1.1.4.3   Banco xx cuenta corriente moneda extranjera|2.2.7
+1.1.4.4   Banco xx caja de ahorro moneda extranjera
+1.2.0   Inversiones
+1.2.1    Titulos publicos
+1.2.2    Acciones
+1.2.3    Banco xx plazo fijo
+1.2.4    Debentures
+1.2.5    Fondos comunes de inversion
+1.2.6    Banco xx plazo fijo moneda extranjera
+1.2.7    Intereses Bancarios Cobrados No Devengados|-
+1.3.0   Creditos por ventas
+1.3.1    Clientes
+1.3.1    Deudores morosos
+1.3.1    Deudores en gestion judicial
+1.3.1    Documentos a cobrar
+1.3.1    Prevision para deudores incobrables|-
+1.3.1    Intereses Comerciales Cobrados no devengados|-
+1.3.1    Cheque de pago diferido a cobrar
+1.3.1    IVA credito fiscal
+1.3.1    IVA saldo a favor
+1.3.1    Fletes a cobrar
+1.3.1    Fletes pagados no devengados
+1.4.0   Otros creditos
+1.4.1    Deudores varios
+1.4.2    Anticipos al personal
+1.4.3    Deudores Hipotecarios
+1.4.4    Cheques de pago diferido a cobrar
+1.4.5    Documentos a cobrar
+1.4.6    Intereses pagados no devengados|-
+1.4.7    Alquileres pagados no devengados
+1.4.8    Accionistas
+1.4.9    Socio xx cuota suscripto
+1.4.10   Seguros pagados no devengados
+1.5.0   Bienes de cambio
+1.5.1    Mercaderias
+1.5.2    Materias primas
+1.5.3    Productos en proceso
+1.5.4    Productos terminados
+1.5.5    Anticipo a proveedores
+1.5.6    Prevision para desvalorizacion de mercaderias|-
+1.6.0   Bienes de uso
+1.6.1.0  Rodados
+1.6.1.1   Depreciacion acumulada Rodados|-
+1.6.2.0  Muebles y Utiles
+1.6.2.1   Depreciacion acumulada Muebles y Utiles|-
+1.6.3.0  Maquinarias
+1.6.3.1   Depreciacion acumulada Maquinarias|-
+1.6.4.0  Edificio
+1.6.4.1   Depreciacion acumulada Edificio|-
+1.6.5    Terreno
+1.6.6.0  Herramientas
+1.6.6.1   Depreciacion acumulada Herramientas|-
+1.6.7.0  Instalaciones
+1.6.7.1   Depreciacion acumulada Instalaciones|-
+1.6.8    Anticipo por compra de bienes de uso
+1.7.0   Otros activos
+1.7.1    Bienes de uso desafectados de la actividad
+1.7.2    Bien de uso destinado a la venta
+1.8.0   Activos intangibles
+1.8.1    Marcas
+1.8.2    Patentes
+1.8.3    Franquicias
+1.8.4    Anticipo por compra de xx
+1.9.0   Llave de negocios
+1.9.1    Llave de negocios
+2.0    Pasivo|-
+2.1.0   Deudas comerciales
+2.1.1    Proveedores
+2.1.2    Obligaciones a pagar
+2.1.3    Intereses Comerciales Pagados No Devengados|-
+2.1.4    Intereses comerciales a pagar
+2.1.5    Cheques de pago diferido a pagar
+2.1.6    Fletes a pagar
+2.1.7    Fletes cobrados no devengados
+2.2.0   Deudas financieras
+2.2.1    Obligaciones a pagar bancarias
+2.2.2    Intereses bancarios pagados no devengados|-
+2.2.3    Intereses bancarios a pagar
+2.2.4    Acreedores hipotecarios
+2.2.5    Acreedores prendarios
+2.2.6    Banco xx cuenta corriente|1.1.4.1
+2.2.7    Banco xx cuenta corriente moneda extranjera|1.1.4.3
+2.3.0   Remuneraciones y cargas sociales
+2.3.1    Sueldos a pagar
+2.3.2    Cargas sociales a pagar
+2.3.3    Retenciones a depositar
+2.3.4    ART a pagar
+2.3.5    AFIP a pagar
+2.3.6    AGEC a pagar
+2.3.7    INACAP a pagar
+2.3.8    FAECyS a pagar
+2.4.0   Deudas fiscales
+2.4.1    Impuestos a pagar
+2.4.1    Impuesto a las ganancias a pagar
+2.4.1    Impuesto a los bienes personales a pagar
+2.4.1    IVA debito fiscal
+2.4.1    IVA saldo a pagar
+2.5.0   Anticipos de clientes
+2.5.1    Anticipo de clientes
+2.6.0   Otros pasivos
+2.6.1    Acreedores varios
+2.6.2    Seguros cobrados no devengados
+2.6.3    Alquileres cobrados no devengados
+2.6.4    Dividendos a pagar
+2.7.0   Previsiones
+2.7.1    Prevision para indemnizacion para despidos
+2.7.2    Prevision para juicios laborales
+3.0    Patrimonio neto
+3.1.0   Aporte de los propietarios
+3.1.1    Capital
+3.1.2    Capital suscripto
+3.1.3    Acciones en circulacion
+3.2.0   Resultados acumulados
+3.2.1    Reserva legal
+3.2.2    Reserva estatutaria
+3.2.3    Reserva facultativa
+3.2.4    Resultados no asignados
+3.2.5    Resultados del ejercicio
+4.0    Cuentas de movimiento
+4.1     Compras
+4.2     Devoluciones de compras
+4.3     Devoluciones de ventas
+5.0    Cuentas de resultado
+5.1.0   Ventas netas
+5.1.1    Ventas
+5.1.2    Impuesto sobre los ingresos brutos
+5.2.0   Costo de ventas
+5.2.1    Costo de ventas
+5.3.0   Gastos de Comercializacion y administracion
+5.3.1    Sueldos
+5.3.2    Cargas sociales
+5.3.3    Alquileres perdidos
+5.3.4    Seguros perdidos
+5.3.5    Impuesto inmobiliario
+5.3.6    Faltante de caja
+5.3.7    Deudores incobrables
+5.3.8    Descuentos otorgados
+5.3.9    Depreciacion bienes de uso
+5.3.10   Quebranto para deudores incobrables
+5.3.11   Quebranto para desvalorizacion de mercaderias
+5.3.12   Quebranto indemnizacion para despidos
+5.3.13   Gastos de energia electrica
+5.3.14   Servicio de vigilancia
+5.3.15   Gastos generales
+5.3.16   Servicios pagados
+5.3.17   Contribuciones patronales
+5.3.18   Honorarios
+5.3.19   Impuestos
+5.4.0   Otros ingresos y egresos
+5.4.1    Resultado venta de bienes de uso
+5.4.2    Resultado venta acciones
+5.4.3    Recupero de prevision deudores incobrables
+5.4.4    Recupero de prevision de indemnizacion por despidos
+5.4.5    Descuentos obtenidos
+5.4.6    Sobrante de caja
+5.4.7    Alquileres ganados
+5.5.0   Resultados financieros y por tenencia
+5.5.1    Intereses pagados
+5.5.2    Intereses ganados
+5.5.3    Diferencia de cambio
+5.5.4    Diferencia de cotizacion
