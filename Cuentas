@@ -3,11 +3,10 @@
 1.1.1    Caja
 1.1.2    Valores a depositar
 1.1.3    Caja Moneda Extranjera
-1.1.4.0  Bancos
-1.1.4.1   Banco xx cuenta corriente|2.2.6
-1.1.4.2   Banco xx caja de ahorro
-1.1.4.3   Banco xx cuenta corriente moneda extranjera|2.2.7
-1.1.4.4   Banco xx caja de ahorro moneda extranjera
+1.1.4    Banco xx cuenta corriente|2.2.6
+1.1.5    Banco xx caja de ahorro
+1.1.6    Banco xx cuenta corriente moneda extranjera|2.2.7
+1.1.7    Banco xx caja de ahorro moneda extranjera
 1.2.0   Inversiones
 1.2.1    Titulos publicos
 1.2.2    Acciones
@@ -47,20 +46,20 @@
 1.5.5    Anticipo a proveedores
 1.5.6    Prevision para desvalorizacion de mercaderias|-
 1.6.0   Bienes de uso
-1.6.1.0  Rodados
-1.6.1.1   Depreciacion acumulada Rodados|-
-1.6.2.0  Muebles y Utiles
-1.6.2.1   Depreciacion acumulada Muebles y Utiles|-
-1.6.3.0  Maquinarias
-1.6.3.1   Depreciacion acumulada Maquinarias|-
-1.6.4.0  Edificio
-1.6.4.1   Depreciacion acumulada Edificio|-
-1.6.5    Terreno
-1.6.6.0  Herramientas
-1.6.6.1   Depreciacion acumulada Herramientas|-
-1.6.7.0  Instalaciones
-1.6.7.1   Depreciacion acumulada Instalaciones|-
-1.6.8    Anticipo por compra de bienes de uso
+1.6.1    Rodados
+1.6.2    Depreciacion acumulada Rodados|-
+1.6.3    Muebles y Utiles
+1.6.4    Depreciacion acumulada Muebles y Utiles|-
+1.6.5    Maquinarias
+1.6.6    Depreciacion acumulada Maquinarias|-
+1.6.7    Edificio
+1.6.8    Depreciacion acumulada Edificio|-
+1.6.9    Terreno
+1.6.10   Herramientas
+1.6.11   Depreciacion acumulada Herramientas|-
+1.6.12   Instalaciones
+1.6.13   Depreciacion acumulada Instalaciones|-
+1.6.14   Anticipo por compra de bienes de uso
 1.7.0   Otros activos
 1.7.1    Bienes de uso desafectados de la actividad
 1.7.2    Bien de uso destinado a la venta
@@ -86,8 +85,8 @@
 2.2.3    Intereses bancarios a pagar
 2.2.4    Acreedores hipotecarios
 2.2.5    Acreedores prendarios
-2.2.6    Banco xx cuenta corriente|1.1.4.1
-2.2.7    Banco xx cuenta corriente moneda extranjera|1.1.4.3
+2.2.6    Banco xx cuenta corriente|1.1.4
+2.2.7    Banco xx cuenta corriente moneda extranjera|1.1.6
 2.3.0   Remuneraciones y cargas sociales
 2.3.1    Sueldos a pagar
 2.3.2    Cargas sociales a pagar
@@ -124,46 +123,42 @@
 3.2.3    Reserva facultativa
 3.2.4    Resultados no asignados
 3.2.5    Resultados del ejercicio
-4.0    Cuentas de movimiento
-4.1     Compras
-4.2     Devoluciones de compras
-4.3     Devoluciones de ventas
-5.0    Cuentas de resultado
-5.1.0   Ventas netas
-5.1.1    Ventas
-5.1.2    Impuesto sobre los ingresos brutos
-5.2.0   Costo de ventas
-5.2.1    Costo de ventas
-5.3.0   Gastos de Comercializacion y administracion
-5.3.1    Sueldos
-5.3.2    Cargas sociales
-5.3.3    Alquileres perdidos
-5.3.4    Seguros perdidos
-5.3.5    Impuesto inmobiliario
-5.3.6    Faltante de caja
-5.3.7    Deudores incobrables
-5.3.8    Descuentos otorgados
-5.3.9    Depreciacion bienes de uso
-5.3.10   Quebranto para deudores incobrables
-5.3.11   Quebranto para desvalorizacion de mercaderias
-5.3.12   Quebranto indemnizacion para despidos
-5.3.13   Gastos de energia electrica
-5.3.14   Servicio de vigilancia
-5.3.15   Gastos generales
-5.3.16   Servicios pagados
-5.3.17   Contribuciones patronales
-5.3.18   Honorarios
-5.3.19   Impuestos
-5.4.0   Otros ingresos y egresos
-5.4.1    Resultado venta de bienes de uso
-5.4.2    Resultado venta acciones
-5.4.3    Recupero de prevision deudores incobrables
-5.4.4    Recupero de prevision de indemnizacion por despidos
-5.4.5    Descuentos obtenidos
-5.4.6    Sobrante de caja
-5.4.7    Alquileres ganados
-5.5.0   Resultados financieros y por tenencia
-5.5.1    Intereses pagados
-5.5.2    Intereses ganados
-5.5.3    Diferencia de cambio
-5.5.4    Diferencia de cotizacion
+4.0    Cuentas de resultado
+4.1.0   Ventas netas
+4.1.1    Ventas
+4.1.2    Impuesto sobre los ingresos brutos
+4.2.0   Costo de ventas
+4.2.1    Costo de ventas
+4.3.0   Gastos de Comercializacion y administracion|-
+4.3.1    Sueldos
+4.3.2    Cargas sociales
+4.3.3    Alquileres perdidos
+4.3.4    Seguros perdidos
+4.3.5    Impuesto inmobiliario
+4.3.6    Faltante de caja
+4.3.7    Deudores incobrables
+4.3.8    Descuentos otorgados
+4.3.9    Depreciacion bienes de uso
+4.3.10   Quebranto para deudores incobrables
+4.3.11   Quebranto para desvalorizacion de mercaderias
+4.3.12   Quebranto indemnizacion para despidos
+4.3.13   Gastos de energia electrica
+4.3.14   Servicio de vigilancia
+4.3.15   Gastos generales
+4.3.16   Servicios pagados
+4.3.17   Contribuciones patronales
+4.3.18   Honorarios
+4.3.19   Impuestos
+4.4.0   Otros ingresos y egresos
+4.4.1    Resultado venta de bienes de uso
+4.4.2    Resultado venta acciones
+4.4.3    Recupero de prevision deudores incobrables
+4.4.4    Recupero de prevision de indemnizacion por despidos
+4.4.5    Descuentos obtenidos
+4.4.6    Sobrante de caja
+4.4.7    Alquileres ganados
+4.5.0   Resultados financieros y por tenencia
+4.5.1    Intereses pagados
+4.5.2    Intereses ganados
+4.5.3    Diferencia de cambio
+4.5.4    Diferencia de cotizacion

@@ -3,10 +3,8 @@ package me.urielsalis.sic;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayDeque;
+import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Queue;
 import java.util.stream.Stream;
 
 /**
@@ -17,6 +15,8 @@ public class Main {
 
     public static void main(String[] args) {
         loadCuentas();
+        System.out.println("Cuentas cargadas");
+        //CuentasGUI.main();
     }
 
     private static void loadCuentas() {
@@ -25,6 +25,7 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        CuentasLoader.finishLoadCuentas();
     }
 
 

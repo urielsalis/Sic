@@ -3,60 +3,50 @@ package me.urielsalis.sic;
 import java.util.ArrayList;
 
 /**
- * Created by urielsalis on 06/09/16.
+ * Created by urielsalis on 07/09/16.
  */
 public class Cuenta {
-    private int fullcode;
+    private boolean reverse = false;
     private String name;
     private int subcode;
-    private boolean substract;
-    private int similarTo;
-    private ArrayList<Cuenta> subCuentas;
+    private int fullcode;
+    private ArrayList<Cuenta> cuentas = new ArrayList<>();
+    private int similarTo = 0;
 
-    public Cuenta(int fullcode, String name, int subcode, boolean substract, int similarTo) {
-        this.fullcode = fullcode;
+    public Cuenta(boolean reverse, String name, int subcode, int fullcode, int similarTo) {
+        this.reverse = reverse;
         this.name = name;
         this.subcode = subcode;
-        this.substract = substract;
+        this.fullcode = fullcode;
         this.similarTo = similarTo;
-        this.subCuentas = new ArrayList<Cuenta>();
     }
 
-    public Cuenta(int fullcode, String name, int subcode, boolean substract, int similarTo, ArrayList<Cuenta> subCuentas) {
-        this.fullcode = fullcode;
+    public Cuenta(boolean reverse, String name, int subcode, int fullcode, ArrayList<Cuenta> cuentas, int similarTo) {
+
+        this.reverse = reverse;
         this.name = name;
         this.subcode = subcode;
-        this.substract = substract;
-        this.similarTo = similarTo;
-        this.subCuentas = subCuentas;
-    }
-
-    public ArrayList<Cuenta> getSubCuentas() {
-        return subCuentas;
-    }
-
-    public void setSubCuentas(ArrayList<Cuenta> subCuentas) {
-        this.subCuentas = subCuentas;
-    }
-
-    public void addSubCuenta(Cuenta cuenta) {
-        subCuentas.add(cuenta);
-    }
-
-    public Cuenta getSubCuenta(int subcode) {
-        for(Cuenta cuenta: subCuentas) {
-            if(cuenta.getSubcode()==subcode) return cuenta;
-        }
-        return null;
-    }
-
-    public int getFullcode() {
-
-        return fullcode;
-    }
-
-    public void setFullcode(int fullcode) {
         this.fullcode = fullcode;
+        this.cuentas = cuentas;
+        this.similarTo = similarTo;
+
+    }
+
+    public int getSimilarTo() {
+        return similarTo;
+    }
+
+    public void setSimilarTo(int similarTo) {
+        this.similarTo = similarTo;
+    }
+
+    public boolean isReverse() {
+
+        return reverse;
+    }
+
+    public void setReverse(boolean reverse) {
+        this.reverse = reverse;
     }
 
     public String getName() {
@@ -75,19 +65,23 @@ public class Cuenta {
         this.subcode = subcode;
     }
 
-    public boolean isSubstract() {
-        return substract;
+    public int getFullcode() {
+        return fullcode;
     }
 
-    public void setSubstract(boolean substract) {
-        this.substract = substract;
+    public void setFullcode(int fullcode) {
+        this.fullcode = fullcode;
     }
 
-    public int getSimilarTo() {
-        return similarTo;
+    public ArrayList<Cuenta> getCuentas() {
+        return cuentas;
     }
 
-    public void setSimilarTo(int similarTo) {
-        this.similarTo = similarTo;
+    public void setCuentas(ArrayList<Cuenta> cuentas) {
+        this.cuentas = cuentas;
+    }
+
+    public void addCuenta(Cuenta rubroActual) {
+        cuentas.add(rubroActual);
     }
 }
