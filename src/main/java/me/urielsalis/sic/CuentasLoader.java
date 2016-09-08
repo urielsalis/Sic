@@ -21,11 +21,12 @@ public class CuentasLoader {
             String name = line.substring(line.indexOf(' ') + 1).trim();
             int t = code.length() - code.replace(".", "").length();
             int subcode;
-            if (Integer.parseInt(code.substring(code.length() - 1)) == 0) {
+            String[] temps = code.split("\\.");
+            if (Integer.parseInt(temps[temps.length-1]) == 0) {
                 t--;
-                subcode = Integer.parseInt(code.substring(code.length()-3, code.length()-2));
+                subcode = Integer.parseInt(temps[temps.length-2]);
             } else {
-                subcode = Integer.parseInt(code.substring(code.length() - 1));
+                subcode = Integer.parseInt(temps[temps.length-1]);
             }
             Nivel level = toEnum(t);
             boolean reverse = false;
@@ -132,7 +133,7 @@ public class CuentasLoader {
     }
 
 
-    private static int getCodeFromString(String code) {
+    public static int getCodeFromString(String code) {
         if(code.endsWith("0")) {
             code = code.substring(0, code.length()-2);
         }

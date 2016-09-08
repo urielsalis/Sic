@@ -10,7 +10,7 @@ public class Cuenta {
     private String name;
     private int subcode;
     private int fullcode;
-    private ArrayList<Cuenta> cuentas = new ArrayList<>();
+    public ArrayList<Cuenta> cuentas = new ArrayList<>();
     private int similarTo = 0;
 
     public Cuenta(boolean reverse, String name, int subcode, int fullcode, int similarTo) {
@@ -30,6 +30,11 @@ public class Cuenta {
         this.cuentas = cuentas;
         this.similarTo = similarTo;
 
+    }
+
+    public Cuenta(String estado) {
+        this.name = estado;
+        //invalid cuenta!!
     }
 
     public int getSimilarTo() {

@@ -17,16 +17,16 @@
 1.2.7    Intereses Bancarios Cobrados No Devengados|-
 1.3.0   Creditos por ventas
 1.3.1    Clientes
-1.3.1    Deudores morosos
-1.3.1    Deudores en gestion judicial
-1.3.1    Documentos a cobrar
-1.3.1    Prevision para deudores incobrables|-
-1.3.1    Intereses Comerciales Cobrados no devengados|-
-1.3.1    Cheque de pago diferido a cobrar
-1.3.1    IVA credito fiscal
-1.3.1    IVA saldo a favor
-1.3.1    Fletes a cobrar
-1.3.1    Fletes pagados no devengados
+1.3.2    Deudores morosos
+1.3.3    Deudores en gestion judicial
+1.3.4    Documentos a cobrar
+1.3.5    Prevision para deudores incobrables|-
+1.3.6    Intereses Comerciales Cobrados no devengados|-
+1.3.7    Cheque de pago diferido a cobrar
+1.3.8    IVA credito fiscal
+1.3.9    IVA saldo a favor
+1.3.10   Fletes a cobrar
+1.3.11   Fletes pagados no devengados
 1.4.0   Otros creditos
 1.4.1    Deudores varios
 1.4.2    Anticipos al personal
@@ -98,10 +98,10 @@
 2.3.8    FAECyS a pagar
 2.4.0   Deudas fiscales
 2.4.1    Impuestos a pagar
-2.4.1    Impuesto a las ganancias a pagar
-2.4.1    Impuesto a los bienes personales a pagar
-2.4.1    IVA debito fiscal
-2.4.1    IVA saldo a pagar
+2.4.2    Impuesto a las ganancias a pagar
+2.4.3    Impuesto a los bienes personales a pagar
+2.4.4    IVA debito fiscal
+2.4.5    IVA saldo a pagar
 2.5.0   Anticipos de clientes
 2.5.1    Anticipo de clientes
 2.6.0   Otros pasivos
