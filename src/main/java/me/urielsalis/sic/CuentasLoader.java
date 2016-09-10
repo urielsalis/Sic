@@ -8,11 +8,11 @@ import static me.urielsalis.sic.CuentasLoader.Nivel.*;
  * Created by urielsalis on 07/09/16.
  */
 public class CuentasLoader {
-    static enum Nivel {ESTADO, RUBRO, CUENTA, NONE}
     private static Cuenta estadoActual = null;
     private static Cuenta rubroActual = null;
     private static Cuenta cuentaActual = null;
     private static Nivel lastLevel = NONE;
+
     public static void parseCuenta(String line) {
         try {
             line = line.trim();
@@ -70,7 +70,6 @@ public class CuentasLoader {
                                     rubroActual = cuenta;
                                     break;
                                 case CUENTA:
-                                    rubroActual.addCuenta(cuenta);
                                     cuentaActual = cuenta;
                             }
                         }
@@ -90,6 +89,7 @@ public class CuentasLoader {
                                     cuentaActual = null;
                                     break;
                                 case CUENTA:
+                                    rubroActual.addCuenta(cuentaActual);
                                     cuentaActual = cuenta;
                                     break;
                             }
@@ -132,11 +132,13 @@ public class CuentasLoader {
         return null;
     }
 
-
     public static int getCodeFromString(String code) {
         if(code.endsWith("0")) {
             code = code.substring(0, code.length()-2);
         }
         return Integer.valueOf(code.replace(".", ""));
     }
+
+
+    static enum Nivel {ESTADO, RUBRO, CUENTA, NONE}
 }

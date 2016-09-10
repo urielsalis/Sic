@@ -1,9 +1,11 @@
 package me.urielsalis.sic;
 
+import me.urielsalis.sic.gui.Clasificar;
+import me.urielsalis.sic.gui.EECC;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.stream.Stream;
@@ -20,11 +22,12 @@ public class Main {
         System.out.println("Cuentas cargadas");
         System.out.println("1) Clasificar");
         System.out.println("2) Crear EECC");
-        int value = teclado.nextInt();
+        int value = Integer.parseInt(teclado.nextLine());
         if(value==1)
             Clasificar.main();
         else if(value==2) {
             //TODO EECC
+            EECC.main();
         }
     }
 
