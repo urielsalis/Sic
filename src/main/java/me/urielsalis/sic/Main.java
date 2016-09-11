@@ -1,7 +1,7 @@
 package me.urielsalis.sic;
 
 import me.urielsalis.sic.gui.Clasificar;
-import me.urielsalis.sic.gui.EECC;
+import me.urielsalis.sic.gui.EECC.EECC;
 
 import java.io.IOException;
 import java.nio.file.Files;
