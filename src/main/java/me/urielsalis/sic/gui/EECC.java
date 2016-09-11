@@ -4,6 +4,7 @@ import de.vandermeer.asciitable.v2.RenderedTable;
 import de.vandermeer.asciitable.v2.V2_AsciiTable;
 import de.vandermeer.asciitable.v2.render.V2_AsciiTableRenderer;
 import de.vandermeer.asciitable.v2.render.WidthAbsoluteEven;
+import de.vandermeer.asciitable.v2.render.WidthLongestWord;
 import de.vandermeer.asciitable.v2.themes.V2_E_TableThemes;
 import me.urielsalis.sic.Cuenta;
 import me.urielsalis.sic.Main;
@@ -17,40 +18,49 @@ import java.util.ArrayList;
 public class EECC {
     public static void main() {
         ArrayList<EECCData> data = new ArrayList<EECCData>();
-        while (true) {
-            System.out.print("Codigo ");
-            String line = Main.teclado.nextLine();
-            if (line.equals("0")) {
-                break;
+        try {
+            while (true) {
+                System.out.print("Codigo ");
+                String line = Main.teclado.nextLine();
+                if (line.equals("0")) {
+                    break;
+                }
+                Cuenta cuenta = (Cuenta) Util.getCuenta(line).clone();
+                if (cuenta.getName().contains("xx")) {
+                    System.out.print("xx: ");
+                    String fullName = Main.teclado.nextLine();
+                    cuenta.setName(cuenta.getName().replace("xx", fullName));
+                }
+                System.out.print("Saldo corriente ");
+                int saldoCorriente = (int) (Float.parseFloat(Main.teclado.nextLine()) * 100);
+                System.out.print("Saldo no corriente ");
+                int saldoNoCorriente = (int) (Float.parseFloat(Main.teclado.nextLine()) * 100);
+                data.add(new EECCData(cuenta, saldoCorriente, saldoNoCorriente));
             }
-            Cuenta cuenta = Util.getCuenta(line);
-            System.out.print("Saldo corriente ");
-            int saldoCorriente = Integer.parseInt(Main.teclado.nextLine()) * 100;
-            System.out.print("Saldo no corriente ");
-            int saldoNoCorriente = Integer.parseInt(Main.teclado.nextLine()) * 100;
-            data.add(new EECCData(cuenta, saldoCorriente, saldoNoCorriente));
-        }
-        V2_AsciiTable at = new V2_AsciiTable();
-        at.addRule();
-        at.addRow("Codigo", "Nombre", "Saldo Corriente", "Saldo No Corriente", "Rubro");
-        for (EECCData eeccData : data) {
-            if (eeccData.cuenta != null) {
-                at.addRule();
-                at.addRow(Util.stringFromCode(eeccData.cuenta.getFullcode()), eeccData.cuenta.getName(), eeccData.saldoCorriente / 100, eeccData.saldoNoCorriente / 100, Util.getRubro(eeccData.cuenta));
+            V2_AsciiTable at = new V2_AsciiTable();
+            at.addRule();
+            at.addRow("Codigo", "Nombre", "Saldo Corriente", "Saldo No Corriente", "Rubro");
+            at.addRule();
+            for (EECCData eeccData : data) {
+                if (eeccData.cuenta != null) {
+                    at.addRow(Util.stringFromCode(eeccData.cuenta.getFullcode()), eeccData.cuenta.getName(), String.valueOf(((float) eeccData.saldoCorriente) / 100), String.valueOf(((float) eeccData.saldoNoCorriente) / 100), Util.getRubro(eeccData.cuenta));
+                    at.addRule();
+                }
             }
+            V2_AsciiTableRenderer rend = new V2_AsciiTableRenderer();
+            rend.setTheme(V2_E_TableThemes.UTF_LIGHT.get());
+            rend.setWidth(new WidthLongestWord());
+            RenderedTable rt = rend.render(at);
+            Util.print(rt.toString());
+            //TODO Notas complementarias
+            ArrayList<FinishedNota> notas = NotasComplementarias.main(data);
+            //TODO ESP
+            //TODO EEPN
+            //TODO ER
+            Util.closePrint();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
         }
-        at.addRule();
-        V2_AsciiTableRenderer rend = new V2_AsciiTableRenderer();
-        rend.setTheme(V2_E_TableThemes.UTF_LIGHT.get());
-        rend.setWidth(new WidthAbsoluteEven(76));
-        RenderedTable rt = rend.render(at);
-        Util.print(rt.toString());
-        //TODO Notas complementarias
-        NotasComplementarias.main(data);
-        //TODO ESP
-        //TODO EEPN
-        //TODO ER
-        Util.closePrint();
     }
 }
 
@@ -67,59 +77,120 @@ class EECCData {
 }
 
 class Nota {
-    private static int counter = 1;
     public boolean reverse = false;
+    public boolean isCorriente;
     public int id;
     public String name;
     public ArrayList<EECCData> data = new ArrayList<>();
-    private int reverseThre = 0;
 
-    public Nota(String name) {
+    public Nota(String name, boolean reverse, boolean isCorriente) {
         this.name = name;
-        this.id = counter;
-        counter++;
+        this.id = -1;
+        this.reverse = reverse;
+        this.isCorriente = isCorriente;
     }
 
     public void addCuenta(EECCData a) {
         data.add(a);
-        if (!reverse) {
-            if (a.cuenta.isReverse()) reverseThre++;
-            if (reverseThre > 3) reverse = true;
-        }
+        if(a.cuenta.isReverse()) reverse = !reverse;
+    }
+}
+
+class FinishedNota {
+    String name;
+    int id;
+    boolean isCorriente;
+    float total;
+
+    public FinishedNota(String name, int id, boolean isCorriente, float total) {
+        this.name = name;
+        this.id = id;
+        this.isCorriente = isCorriente;
+        this.total = total;
     }
 }
 
 class NotasComplementarias {
-    public static void main(ArrayList<EECCData> data) {
-        /*ArrayList<Nota> notas = new ArrayList<Nota>(); TODO CHANGE IT SO ONLY RUBROS IN ORDER WITH ACCOUNTS ARE ADDED
+    public static ArrayList<FinishedNota> main(ArrayList<EECCData> data) {
+        ArrayList<Nota> tempCorriente = new ArrayList<Nota>();
+        ArrayList<Nota> tempNoCorriente = new ArrayList<Nota>();
+        ArrayList<Nota> notas = new ArrayList<Nota>();
+        ArrayList<FinishedNota> output = new ArrayList<>();
         Cuenta activo = Main.cuentas.get(0);
         Cuenta pasivo = Main.cuentas.get(1);
         Cuenta resultados = Main.cuentas.get(3);
-        for (Cuenta cuenta : activo.cuentas) for (Cuenta rubro : cuenta.cuentas) notas.add(new Nota(rubro.getName()));
-        for (Cuenta cuenta : pasivo.cuentas) for (Cuenta rubro : cuenta.cuentas) notas.add(new Nota(rubro.getName()));
-        for (Cuenta cuenta : resultados.cuentas) for (Cuenta rubro : cuenta.cuentas) notas.add(new Nota(rubro.getName()));
-        *//*for(EECCData eeccData: data) {
+
+        for (Cuenta rubro : activo.cuentas) {
+            if(rubro==null) continue;
+            tempCorriente.add(new Nota(rubro.getName(), rubro.isReverse(), true));
+        }
+        for (Cuenta rubro : pasivo.cuentas) {
+            if(rubro==null) continue;
+            tempCorriente.add(new Nota(rubro.getName(), rubro.isReverse(), true));
+        }
+        for (Cuenta rubro : resultados.cuentas) {
+            if(rubro==null) continue;
+            tempCorriente.add(new Nota(rubro.getName(), rubro.isReverse(), true));
+        }
+        for (Cuenta rubro : activo.cuentas) {
+            if(rubro==null) continue;
+            tempNoCorriente.add(new Nota(rubro.getName(), rubro.isReverse(), false));
+        }
+        for (Cuenta rubro : pasivo.cuentas) {
+            if(rubro==null) continue;
+            tempNoCorriente.add(new Nota(rubro.getName(), rubro.isReverse(), false));
+        }
+        for (Cuenta rubro : resultados.cuentas) {
+            if(rubro==null) continue;
+            tempNoCorriente.add(new Nota(rubro.getName(), rubro.isReverse(), false));
+        }
+
+        for(EECCData eeccData: data) {
             if(eeccData.cuenta==null) continue;
-            for(Nota rubro: notas) {
-                if(rubro.name.equals(Util.getRubro(eeccData.cuenta)))
-                    rubro.addCuenta(eeccData);
+            if(eeccData.saldoCorriente > 0) {
+                for (Nota rubro : tempCorriente) {
+                    if (rubro == null) continue;
+                    if (rubro.name.equals(Util.getRubro(eeccData.cuenta)))
+                        rubro.addCuenta(eeccData);
+                }
+            }
+            if(eeccData.saldoNoCorriente > 0) {
+                for (Nota rubro : tempNoCorriente) {
+                    if (rubro == null) continue;
+                    if (rubro.name.equals(Util.getRubro(eeccData.cuenta)))
+                        rubro.addCuenta(eeccData);
+                }
+            }
+        }
+        int counter = 1;
+        for(Nota nota: tempCorriente) {
+            if(!nota.data.isEmpty()) {
+                nota.id = counter;
+                counter++;
+                notas.add(nota);
+            }
+        }
+        for(Nota nota: tempNoCorriente) {
+            if(!nota.data.isEmpty()) {
+                nota.id = counter;
+                counter++;
+                notas.add(nota);
             }
         }
         for(Nota nota: notas) {
             System.out.println("Nota " + nota.id + ": "+nota.name);
+            int total = 0;
             for(EECCData eeccData: nota.data) {
-                boolean reverse = false;
-                if(!nota.reverse) {
-                    if(eeccData.cuenta.isReverse()) reverse = true;
-                }
-                if(reverse) {
-                    System.out.println("  " + eeccData.cuenta.getName() + "  " + eeccData.saldoCorriente);
-                } else {
-
-                }
+                boolean reverse = nota.reverse;
+                if (eeccData.cuenta.isReverse()) reverse = !reverse;
+                System.out.println(nota.isCorriente ? reverse ? "  " + eeccData.cuenta.getName() + " (" + ((float) eeccData.saldoCorriente) / 100 + ")" : "  " + eeccData.cuenta.getName() + " " + ((float) eeccData.saldoCorriente) / 100 + "" : reverse ? "  " + eeccData.cuenta.getName() + " (" + ((float) eeccData.saldoNoCorriente) / 100 + ")" : "  " + eeccData.cuenta.getName() + " " + ((float) eeccData.saldoNoCorriente) / 100 + "");
+                if(nota.isCorriente) if (reverse) total -= eeccData.saldoCorriente; else total += eeccData.saldoCorriente;
+                else if (reverse) total -= eeccData.saldoNoCorriente; else total += eeccData.saldoNoCorriente;
             }
-        }*/
-
+            System.out.println("Total: " + ((float) total)/100);
+            output.add(new FinishedNota(nota.name, nota.id, nota.isCorriente, ((float) total)/100));
+        }
+        return output;
     }
 
 }

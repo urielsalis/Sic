@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * Created by urielsalis on 07/09/16.
  */
-public class Cuenta {
+public class Cuenta implements Cloneable{
     private boolean reverse = false;
     private String name;
     private int subcode;
@@ -88,5 +88,10 @@ public class Cuenta {
 
     public void addCuenta(Cuenta rubroActual) {
         cuentas.add(rubroActual);
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return new Cuenta(this.reverse, this.name, this.subcode, this.fullcode, this.cuentas, this.similarTo);
     }
 }
