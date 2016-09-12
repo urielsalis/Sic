@@ -104,6 +104,8 @@ public class CuentasLoader {
     }
 
     public static void finishLoadCuentas() {
+        rubroActual.addCuenta(cuentaActual);
+        estadoActual.addCuenta(rubroActual);
         Main.cuentas.add(estadoActual);
         estadoActual = null;
         rubroActual = null;

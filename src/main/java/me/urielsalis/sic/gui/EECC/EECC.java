@@ -56,8 +56,8 @@ public class EECC {
             Util.print(rt.toString());
             NotasComplementariasResult notas = NotasComplementarias.main(data);
             float rdoEjercicio = ER.main(notas);
-            //TODO EEPN
-            //TODO ESP
+            float patrimonioNeto = EEPN.main(rdoEjercicio);
+            ESP.main(notas, patrimonioNeto);
             Util.closePrint();
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();

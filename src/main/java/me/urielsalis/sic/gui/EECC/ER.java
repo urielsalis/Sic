@@ -23,6 +23,7 @@ public class ER {
         at.addRow("Estado de resultados al", EECC.fecha);
         at.addStrongRule();
         at.addRow("Ventas netas de bienes y servicios (Nota " + ventas.id + ")", ventas.total);
+        at.addRule();
         at.addRow("Costo de los bienes vendidos y servicios prestados", "(" + data.costoDeVentas + ")");
         at.addRule();
         if (resultadoBruto > 0)
@@ -34,11 +35,13 @@ public class ER {
         for (FinishedNota nota : data.result) {
             if (nota.name.equals("Ventas netas")) continue;
             if (nota.type == 2) {
+                at.addRule();
                 if (nota.total < 0)
                     at.addRow(nota.name + " (Nota " + nota.id + ")", "(" + nota.total + ")");
                 else
                     at.addRow(nota.name + " (Nota " + nota.id + ")", nota.total);
                 total += nota.total;
+
             }
         }
         at.addRule();
