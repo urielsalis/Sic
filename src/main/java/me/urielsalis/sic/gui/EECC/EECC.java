@@ -15,8 +15,11 @@ import java.util.ArrayList;
  * Created by urielsalis on 08/09/16.
  */
 public class EECC {
+    public static String fecha = "../../..";
     public static void main() {
         ArrayList<EECCData> data = new ArrayList<>();
+        System.out.print("Fecha: ");
+        fecha = Main.teclado.nextLine();
         try {
             while (true) {
                 System.out.print("Codigo ");
@@ -51,9 +54,8 @@ public class EECC {
             rend.setWidth(new WidthLongestWord());
             RenderedTable rt = rend.render(at);
             Util.print(rt.toString());
-            //TODO Notas complementarias
-            ArrayList<FinishedNota> notas = NotasComplementarias.main(data);
-            float rdoEjercicio = ER.main(data);
+            NotasComplementariasResult notas = NotasComplementarias.main(data);
+            float rdoEjercicio = ER.main(notas);
             //TODO EEPN
             //TODO ESP
             Util.closePrint();

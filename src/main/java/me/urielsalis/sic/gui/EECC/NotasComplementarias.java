@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * Created by Gustavo on 11/9/2016.
  */
 public class NotasComplementarias {
-    public static ArrayList<FinishedNota> main(ArrayList<EECCData> data) {
+    public static NotasComplementariasResult main(ArrayList<EECCData> data) {
         ArrayList<Nota> tempCorriente = new ArrayList<Nota>();
         ArrayList<Nota> tempNoCorriente = new ArrayList<Nota>();
         ArrayList<Nota> notas = new ArrayList<Nota>();
@@ -18,34 +18,39 @@ public class NotasComplementarias {
         Cuenta activo = Main.cuentas.get(0);
         Cuenta pasivo = Main.cuentas.get(1);
         Cuenta resultados = Main.cuentas.get(3);
+        float costoDeVentas = 0;
 
         for (Cuenta rubro : activo.cuentas) {
             if(rubro==null) continue;
-            tempCorriente.add(new Nota(rubro.getName(), rubro.isReverse(), true));
+            tempCorriente.add(new Nota(rubro.getName(), rubro.isReverse(), true, 0));
         }
         for (Cuenta rubro : pasivo.cuentas) {
             if(rubro==null) continue;
-            tempCorriente.add(new Nota(rubro.getName(), rubro.isReverse(), true));
+            tempCorriente.add(new Nota(rubro.getName(), rubro.isReverse(), true, 1));
         }
         for (Cuenta rubro : resultados.cuentas) {
             if(rubro==null) continue;
-            tempCorriente.add(new Nota(rubro.getName(), rubro.isReverse(), true));
+            tempCorriente.add(new Nota(rubro.getName(), rubro.isReverse(), true, 2));
         }
         for (Cuenta rubro : activo.cuentas) {
             if(rubro==null) continue;
-            tempNoCorriente.add(new Nota(rubro.getName(), rubro.isReverse(), false));
+            tempNoCorriente.add(new Nota(rubro.getName(), rubro.isReverse(), false, 0));
         }
         for (Cuenta rubro : pasivo.cuentas) {
             if(rubro==null) continue;
-            tempNoCorriente.add(new Nota(rubro.getName(), rubro.isReverse(), false));
+            tempNoCorriente.add(new Nota(rubro.getName(), rubro.isReverse(), false, 1));
         }
         for (Cuenta rubro : resultados.cuentas) {
             if(rubro==null) continue;
-            tempNoCorriente.add(new Nota(rubro.getName(), rubro.isReverse(), false));
+            tempNoCorriente.add(new Nota(rubro.getName(), rubro.isReverse(), false, 2));
         }
 
         for(EECCData eeccData: data) {
             if(eeccData.cuenta==null) continue;
+            if (eeccData.cuenta.getName().equals("Costo de ventas")) {
+                costoDeVentas = eeccData.saldoCorriente + eeccData.saldoNoCorriente;
+                continue;
+            }
             if(eeccData.saldoCorriente > 0) {
                 for (Nota rubro : tempCorriente) {
                     if (rubro == null) continue;
@@ -87,9 +92,9 @@ public class NotasComplementarias {
                 else if (reverse) total -= eeccData.saldoNoCorriente; else total += eeccData.saldoNoCorriente;
             }
             System.out.println("Total: " + ((float) total)/100);
-            output.add(new FinishedNota(nota.name, nota.id, nota.isCorriente, ((float) total)/100));
+            output.add(new FinishedNota(nota.name, nota.id, nota.isCorriente, ((float) total) / 100, nota.type));
         }
-        return output;
+        return new NotasComplementariasResult(output, costoDeVentas);
     }
 
 }
