@@ -30,18 +30,23 @@ public class ESP {
         Util.print("Activo No Corriente");
         float totalANC = show(activoNC);
         Util.print("  Total Activo No Corriente  " + totalANC);
-        Util.print("Pasivo Corriente");
         Util.print("");
-        Util.print("Total Activo " + totalAC + totalANC);
+        float totalActivo = totalAC + totalANC;
+        Util.print("Total Activo " + totalActivo);
+        Util.print("");
+        Util.print("");
+        Util.print("Pasivo Corriente");
         float totalPC = show(pasivoC);
         Util.print("  Total Pasivo Corriente  " + totalPC);
         Util.print("Pasivo No Corriente");
         float totalPNC = show(pasivoNC);
         Util.print("  Total Pasivo No Corriente  " + totalPNC);
         Util.print("");
-        Util.print("Total Pasivo " + totalPC + totalPNC);
+        float totalPasivo = totalPC + totalPNC;
+        Util.print("Total Pasivo " + totalPasivo);
         Util.print("Patrimonio neto " + patrimonioNeto);
-        Util.print("Total P+PN " + totalPC + totalPNC + patrimonioNeto);
+        float totalpasivoPN = totalPasivo + patrimonioNeto;
+        Util.print("Total P+PN " + totalpasivoPN);
 
     }
 
