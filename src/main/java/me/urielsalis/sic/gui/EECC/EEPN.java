@@ -25,7 +25,7 @@ public class EEPN {
         float rna = Float.parseFloat(Main.teclado.nextLine());
         V2_AsciiTable at = new V2_AsciiTable();
         at.addStrongRule();
-        at.addRow(null, null, null, null, null, "Estado de evolucion del patrimonio neto al " + EECC.fecha);
+        at.addRow(null, null, null, null, null, null, null, "Estado de evolucion del patrimonio neto al " + EECC.fecha);
         at.addStrongRule();
         at.addRow("Rubro", "Capital", "Prima de emision", "Total", "Reserva legal", "Reserva facultativa", "RNA", "Total");
         at.addRule();
